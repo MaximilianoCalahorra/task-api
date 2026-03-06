@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -95,7 +96,7 @@ public class TaskController {
 			@ApiResponse(responseCode = "400", description = "Transición de estado inválida"),
 			@ApiResponse(responseCode = "404", description = "Tarea inexistente")
 	})
-	@PostMapping("/{id}/start")
+	@PatchMapping("/{id}/start")
 	public TaskResponse start(@PathVariable Long id) {
 		return taskService.startTask(id);
 	}
@@ -107,7 +108,7 @@ public class TaskController {
 			@ApiResponse(responseCode = "400", description = "Transición de estado inválida"),
 			@ApiResponse(responseCode = "404", description = "Tarea inexistente")
 	})
-	@PostMapping("/{id}/complete")
+	@PatchMapping("/{id}/complete")
 	public TaskResponse complete(@PathVariable Long id) {
 		return taskService.completeTask(id);
 	}
@@ -119,7 +120,7 @@ public class TaskController {
 			@ApiResponse(responseCode = "400", description = "Transición de estado inválida"),
 			@ApiResponse(responseCode = "404", description = "Tarea inexistente")
 	})
-	@PostMapping("/{id}/cancel")
+	@PatchMapping("/{id}/cancel")
 	public TaskResponse cancel(@PathVariable Long id) {
 		return taskService.cancelTask(id);
 	}
