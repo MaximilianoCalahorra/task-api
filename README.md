@@ -1,9 +1,8 @@
 # 📝 Task API
 
 API REST desarrollada con Spring Boot para gestionar tareas.  
-Permite crear, modificar, eliminar y cambiar el estado de tareas a través de endpoints HTTP.
-
-La API actualmente utiliza almacenamiento **en memoria**, pero está diseñada para integrarse fácilmente con una base de datos.
+Permite crear, modificar, eliminar y cambiar el estado de tareas a través de endpoints HTTP.  
+Los datos se almacenan en una base de datos MySQL utilizando Spring Data JPA.
 
 ---
 
@@ -14,6 +13,8 @@ La API actualmente utiliza almacenamiento **en memoria**, pero está diseñada p
 - Maven
 - Lombok
 - Spring Validation
+- Spring Data JPA
+- MySQL
 - OpenAPI / Swagger
 
 ---
@@ -83,6 +84,54 @@ Desde allí se pueden probar todos los endpoints.
 
 ---
 
+## 🗄️ Configuración de base de datos
+
+La aplicación utiliza **MySQL** para persistir los datos.
+
+1. Crear la base de datos
+
+    Ejecutar en MySQL:
+
+    ```sql
+    CREATE DATABASE IF NOT EXISTS taskdb;
+    ```
+
+2. Configurar variables de entorno
+
+    La aplicación utiliza las siguientes variables:
+    | Variable    | Descripción                        |
+    | ----------- | ---------------------------------- |
+    | DB_URL      | URL de conexión a la base de datos |
+    | DB_USERNAME | Usuario de la base de datos        |
+    | DB_PASSWORD | Contraseña de la base de datos     |
+
+    Ejemplo:
+    ```bash
+    DB_URL=jdbc:mysql://localhost:3306/taskdb
+    DB_USERNAME=root
+    DB_PASSWORD=tu_password
+    ```
+  
+3. Configuración en el IDE
+
+    **Spring Tool Suite**
+
+    Configurar las variables en Run → Run Configurations → Proyecto task-api.
+
+    **VS Code**
+
+    Crear un archivo .env en la raíz del proyecto con:
+
+    ```bash
+    DB_URL=jdbc:mysql://localhost:3306/taskdb
+    DB_USERNAME=tu_username
+    DB_PASSWORD=tu_password
+    ```
+
+Al iniciar la aplicación por primera vez, Hibernate creará automáticamente la tabla `tasks` en la base de datos.
+
+---
+
 ## ⚙️ Ejecutar el proyecto
 
 Clonar el repositorio:
@@ -106,6 +155,19 @@ Ejecutar la aplicación:
 La API estará disponible en:
 
 http://localhost:8080
+
+---
+
+## 🏗️ Arquitectura del proyecto
+
+El proyecto sigue una arquitectura en capas:
+
+Controller → Service → Repository → Database
+
+- **Controller:** expone los endpoints REST
+- **Service:** contiene la lógica de negocio
+- **Repository:** acceso a datos mediante Spring Data JPA
+- **DTOs y Mappers:** separación entre modelo interno y API
 
 ---
 
