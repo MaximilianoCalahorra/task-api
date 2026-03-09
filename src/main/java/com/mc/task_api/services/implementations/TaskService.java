@@ -10,7 +10,7 @@ import com.mc.task_api.dtos.TaskUpdateRequest;
 import com.mc.task_api.exceptions.TaskNotFoundException;
 import com.mc.task_api.mappers.interfaces.TaskMapperI;
 import com.mc.task_api.model.Task;
-import com.mc.task_api.repositories.interfaces.TaskRepositoryI;
+import com.mc.task_api.repositories.TaskRepositoryI;
 import com.mc.task_api.services.interfaces.TaskServiceI;
 
 import lombok.RequiredArgsConstructor;
